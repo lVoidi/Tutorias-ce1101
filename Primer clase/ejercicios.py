@@ -199,7 +199,6 @@ def es_primo_aux(num, i):
 # Hacer una función que aproxime euler para cualquier exponente x, utilizando 
 # las series de maclaurin 
 # e^x = 1 + x + x^2/2! + x^3/3! + x^4/4! + ... + x^n/n!
-
 def euler(x, n):
     if isinstance(x, int) and x >= 0 and isinstance(n, int) and n >= 0:
         return euler_aux(x, n)
@@ -241,5 +240,3 @@ def reto_2_aux(num):
 
     return False 
 
-
-print(reto_2(202122)) 
