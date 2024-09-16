@@ -1,0 +1,120 @@
+"""
+Ejercicios de recursividad para examen.
+Rodrigo Arce
+
+t.me/roarba
+
+Este documento está protegido bajo la licencia GPL 3.0.
+"""
+
+
+"""
+Primer ejercicio. Elaborar una función llamada hay_par que agarre una lista 
+y devuelva True si hay un número par en la lista, False en caso contrario. 
+"""
+
+"""
+Ejemplo de pila con índices
+"""
+
+def hay_par_pila(lista):
+    if isinstance(lista, list):
+        return hay_par_pila_aux(lista, 0)
+    else:
+        return "Error"
+
+def hay_par_pila_aux(lista, indice):
+    if indice == len(lista):
+        return False
+    
+    elif lista[indice] % 2 == 0:
+        return True
+    else:
+        return hay_par_pila_aux(lista, indice + 1)
+
+# print(hay_par_pila([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+# print("------------------------------------------------")
+# print(hay_par_pila([1, 3, 5, 7, 9, 11, 13, 15, 17, 19]))
+
+"""
+Ejemplo utilizando recursividad de cola y slicing.
+"""
+def hay_par_cola(lista):
+    if isinstance(lista, list):
+        return hay_par_cola_aux(lista)
+    else:
+        return "Error"
+    
+
+def hay_par_cola_aux(lista):
+    if lista == []:
+        return False
+    elif lista[0] % 2 == 0:
+        return True
+    else:
+        return hay_par_cola_aux(lista[1:])
+
+# print(hay_par_cola([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+# print("------------------------------------------------")
+# print(hay_par_cola([1, 3, 5, 7, 9, 11, 13, 15, 17, 19]))
+
+
+"""
+Segundo ejercicio. Elaborar una función llamada revise_num que 
+reciba un número y devuelva una tupla de la forma (a, b) donde 
+a es la cantidad de ceros y b es la cantidad de otros digitos.
+"""
+
+"""
+Para este ejercicio, no hay versión de pila.
+"""
+
+def revise_num_cola(numero):
+    if isinstance(numero, int):
+        return revise_num_cola_aux(numero, 0, 0)
+    else:
+        return "Error"
+
+
+def revise_num_cola_aux(numero, ceros, otros):
+    if numero == 0:
+        return (ceros, otros)
+    elif numero % 10 == 0:
+        return revise_num_cola_aux(numero // 10, ceros + 1, otros)
+    else:
+        return revise_num_cola_aux(numero // 10, ceros, otros + 1)
+    
+# print(revise_num_cola(100))
+# print("------------------------------------------------")
+# print(revise_num_cola(1234567890))
+
+
+
+"""
+Tercer ejercicio. Escriba una función llamada divida(num, dig) que devuelva 
+una tupla con la cantidad de dígitos mayores o iguales a dig y la cantidad de
+digitos menores a dig.
+"""
+
+"""
+Version de cola. Este ejercicio también solo se puede hacer de cola.
+"""
+
+
+def divida(num, dig):
+    if isinstance(num, int) and isinstance(dig, int):
+        return divida_aux(num, dig, 0, 0)
+    else:
+        return "Error"
+    
+def divida_aux(num, dig, mayores, menores):
+    if num == 0:
+        return (mayores, menores)
+    elif num % 10 >= dig:
+        return divida_aux(num // 10, dig, mayores + 1, menores)
+    else:
+        return divida_aux(num // 10, dig, mayores, menores + 1)
+
+# print(divida(1234567890, 5))
+# print("------------------------------------------------")
+# print(divida(1234567890, 5))
