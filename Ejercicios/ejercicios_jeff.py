@@ -17,6 +17,20 @@ y devuelva True si hay un número par en la lista, False en caso contrario.
 Ejemplo de pila con índices
 """
 
+# Para opacar la función sum con una versión recursiva. Mas adelante se usa.
+def sum(lista):
+    if isinstance(lista, list) and lista != []:
+        return sum_aux(lista, 0)
+    else:
+        return "Error"
+
+def sum_aux(lista, indice):
+    if indice == len(lista):
+        return 0
+    else:
+        return lista[indice] + sum_aux(lista, indice + 1)
+
+
 def hay_par_pila(lista):
     if isinstance(lista, list) and lista != []:
         return hay_par_pila_aux(lista, 0)
@@ -428,3 +442,90 @@ def calcula_aux(lista, indice, mayor, suma, cantidad, ceros):
 # print(calcula([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 # print("------------------------------------------------")
 # print(calcula([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]))
+
+"""
+Onceavo ejercicio. Escriba una función semi_magica(matriz)
+que reciba una matriz nxm, asumiendo que viene en forma correcta y verifique si
+es una matriz semi-mágica. Una matriz semi-mágica es aquella en la que la suma de
+cada fila es igual.
+"""
+
+"""
+Version de cola e indices
+"""
+
+def semi_magica(matriz):
+    if isinstance(matriz, list) and matriz != []:
+        return semi_magica_aux(matriz, 0, 0)
+    else:
+        return "Error"
+    
+def semi_magica_aux(matriz, indice, suma):
+    if indice == len(matriz):
+        return True
+    elif suma == 0:
+        return semi_magica_aux(matriz, indice + 1, sum(matriz[indice]))
+    elif suma == sum(matriz[indice]):
+        return semi_magica_aux(matriz, indice + 1, sum(matriz[indice]))
+    else:
+        return False
+
+# print(semi_magica([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
+# print("------------------------------------------------")
+# print(semi_magica([[1,0,0], [0,1,0], [0,0,1]]))
+
+"""
+Doceavo ejercicio. Escriba una función llamada ceros(matriz) que reciba una matriz nxm y devuelva
+las posiciones en la matriz donde hay ceros, como una lista de listas
+"""
+
+
+"""
+Version de pila e indices
+"""
+
+def ceros(matriz):
+    if isinstance(matriz, list) and matriz != []:
+        return ceros_aux(matriz, 0, 0)
+    else:
+        return "Error"
+    
+def ceros_aux(matriz, fila, columna):
+    if fila == len(matriz):
+        return []
+    elif columna == len(matriz[0]):
+        return ceros_aux(matriz, fila + 1, 0)
+    elif matriz[fila][columna] == 0:
+        return [[fila, columna]] + ceros_aux(matriz, fila, columna + 1)
+    else:
+        return ceros_aux(matriz, fila, columna + 1)
+
+
+"""
+Version de cola
+"""
+
+def ceros_cola(matriz):
+    if isinstance(matriz, list) and matriz != []:
+        return ceros_cola_aux(matriz, 0, 0, [])
+    else:
+        return "Error"
+    
+def ceros_cola_aux(matriz, fila, columna, resultado):
+    if fila == len(matriz):
+        return resultado
+    elif columna == len(matriz[0]):
+        return ceros_cola_aux(matriz, fila + 1, 0, resultado)
+    elif matriz[fila][columna] == 0:
+        return ceros_cola_aux(matriz, fila, columna + 1, resultado + [[fila, columna]])
+    else:
+        return ceros_cola_aux(matriz, fila, columna + 1, resultado)
+    
+
+# print(ceros([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
+# print("------------------------------------------------")
+# print(ceros([[1,0,0], [0,1,0], [0,0,1]]))
+
+# print(ceros_cola([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
+# print("------------------------------------------------")
+# print(ceros_cola([[1,0,0], [0,1,0], [0,0,1]]))
