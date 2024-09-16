@@ -18,7 +18,7 @@ Ejemplo de pila con índices
 """
 
 def hay_par_pila(lista):
-    if isinstance(lista, list):
+    if isinstance(lista, list) and lista != []:
         return hay_par_pila_aux(lista, 0)
     else:
         return "Error"
@@ -40,7 +40,7 @@ def hay_par_pila_aux(lista, indice):
 Ejemplo utilizando recursividad de cola y slicing.
 """
 def hay_par_cola(lista):
-    if isinstance(lista, list):
+    if isinstance(lista, list) and lista != []:
         return hay_par_cola_aux(lista)
     else:
         return "Error"
@@ -128,7 +128,7 @@ reciba un numero y cuente la cantidad de parejas que hay en el número.
 """
 
 def parejas(num):
-    if isinstance(num, int):
+    if isinstance(num, int) :
         return parejas_aux(num, 0)
     else:
         return "Error"
@@ -156,7 +156,7 @@ Version de cola y slicing
 """
 
 def forme1(lista):
-    if isinstance(lista, list):
+    if isinstance(lista, list) and lista != []:
         return forme1_aux(lista, [])
     else:
         return "Error"
@@ -175,7 +175,7 @@ Version de pila con índices
 """
 
 def forme1_pila(lista):
-    if isinstance(lista, list):
+    if isinstance(lista, list) and lista != []:
         return forme1_pila_aux(lista, 0)
     else:
         return "Error"
@@ -196,3 +196,235 @@ def forme1_pila_aux(lista, indice):
 # print("------------------------------------------------")
 # print(forme1_pila([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]))
 
+
+"""
+Sexto ejercicio. Haga una función que se llama cambiar(lista, ele) que 
+cambie todos los ele por cero en la lista.
+"""
+
+"""
+Version de pila y con indices
+"""
+
+def cambiar(lista, ele):
+    if isinstance(lista, list) and isinstance(ele, int) and lista != []:
+        return cambiar_aux(lista, ele, 0)
+    else:
+        return "Error"
+    
+def cambiar_aux(lista, ele, indice):
+    if indice == len(lista):
+        return []
+    elif lista[indice] == ele:
+        return [0] + cambiar_aux(lista, ele, indice + 1)
+    else:
+        return [lista[indice]] + cambiar_aux(lista, ele, indice + 1)
+    
+# print(cambiar([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5))
+# print("------------------------------------------------")
+# print(cambiar([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1))
+
+"""
+Version de cola y slicing
+"""
+def cambiar_cola(lista, ele):
+    if isinstance(lista, list) and isinstance(ele, int) and lista != []:
+        return cambiar_cola_aux(lista, ele, [])
+    else:
+        return "Error"
+
+def cambiar_cola_aux(lista, ele, resultado):
+    if lista == []:
+        return resultado
+    elif lista[0] == ele:
+        return cambiar_cola_aux(lista[1:], ele, resultado + [0])
+    else:
+        return cambiar_cola_aux(lista[1:], ele, resultado + [lista[0]])
+
+
+"""
+Septimo ejercicio. Se desea recibir una lista no nula y devolver otra compuesta por dos sublistas, la
+primera tendrá a los elementos pares, mientras que la segunda contendrá a los impares.
+"""
+
+"""
+Version de cola y slicing
+"""
+
+def separar(lista):
+    if isinstance(lista, list) and lista != []:
+        return separar_aux(lista, [], [])
+    else:
+        return "Error"
+    
+def separar_aux(lista, pares, impares):
+    if lista == []:
+        return [pares, impares]
+    elif lista[0] % 2 == 0:
+        return separar_aux(lista[1:], pares + [lista[0]], impares)
+    else:
+        return separar_aux(lista[1:], pares, impares + [lista[0]])
+    
+# print(separar([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+# print("------------------------------------------------")
+# print(separar([1, 3, 5, 7, 9, 11, 13, 15, 17, 19]))
+
+"""
+Version de cola con indices (no hay version de pila)
+"""
+
+def separar_slicing(lista):
+    if isinstance(lista, list) and lista != []:
+        return separar_slicing_aux(lista, 0, [], [])
+    else:
+        return "Error"
+    
+def separar_slicing_aux(lista, indice, pares, impares):
+    if indice == len(lista):
+        return [pares, impares]
+    elif lista[indice] % 2 == 0:
+        return separar_slicing_aux(lista, indice + 1, pares + [lista[indice]], impares)
+    else:
+        return separar_slicing_aux(lista, indice + 1, pares, impares + [lista[indice]])
+
+# print(separar_slicing([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+# print("------------------------------------------------")
+# print(separar_slicing([1, 3, 5, 7, 9, 11, 13, 15, 17, 19]))
+
+
+"""
+Octavo ejercicio. Escriba una función recursiva elimine(lista, num) que reciba una lista y un
+número y elimine de la lista la primera aparición que coincida con el número dado
+"""
+
+"""
+Version de cola y slicing
+"""
+
+def elimine(lista, num):
+    if isinstance(lista, list) and isinstance(num, int) and lista != []:
+        return elimine_aux(lista, num, [])
+    else:
+        return "Error"
+    
+def elimine_aux(lista, num, resultado):
+    if lista == []:
+        return resultado
+    elif lista[0] == num:
+        return resultado + lista[1:]
+    else:
+        return elimine_aux(lista[1:], num, resultado + [lista[0]])
+    
+# print(elimine([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5))
+# print("------------------------------------------------")
+# print(elimine([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1))
+
+"""
+Version de pila con indices
+"""
+
+def elimine_pila(lista, num):
+    if isinstance(lista, list) and isinstance(num, int) and lista != []:
+        return elimine_pila_aux(lista, num, 0)
+    else:
+        return "Error"
+    
+def elimine_pila_aux(lista, num, indice):
+    if indice == len(lista):
+        return []
+    elif lista[indice] == num:
+        return lista[:indice] + lista[indice + 1:] # Hay que hacer slicing de esta manera
+    else:
+        return elimine_pila_aux(lista, num, indice + 1)
+
+# print(elimine_pila([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5))
+# print("------------------------------------------------")
+# print(elimine_pila([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1))
+
+
+
+"""
+Noveno ejercicio. Escriba una función llamada elimine_todos(lista, num) que reciba una lista y un número
+y elimine de la lista todas las apariciones que coincidan con el número dado.
+"""
+
+"""
+version de cola y slicing
+"""
+
+def elimine_todos(lista, num):
+    if isinstance(lista, list) and isinstance(num, int) and lista != []:
+        return elimine_todos_aux(lista, num, [])
+    else:
+        return "Error"
+    
+
+def elimine_todos_aux(lista, num, resultado):
+    if lista == []:
+        return resultado
+    elif lista[0] == num:
+        return elimine_todos_aux(lista[1:], num, resultado)
+    else:
+        return elimine_todos_aux(lista[1:], num, resultado + [lista[0]])
+    
+"""
+Version de pilas con indices
+"""
+
+def elimine_todos_pila(lista, num):
+    if isinstance(lista, list) and isinstance(num, int) and lista != []:
+        return elimine_todos_pila_aux(lista, num, 0)
+    else:
+        return "Error"
+    
+def elimine_todos_pila_aux(lista, num, indice):
+    if indice == len(lista):
+        return []
+    elif lista[indice] == num:
+        return elimine_todos_pila_aux(lista, num, indice + 1)
+    else:
+        return [lista[indice]] + elimine_todos_pila_aux(lista, num, indice + 1)
+
+
+# print(elimine_todos([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5))
+# print("------------------------------------------------")
+# print(elimine_todos([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1))
+
+# print(elimine_todos_pila([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5))
+# print("------------------------------------------------")
+# print(elimine_todos_pila([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1))
+
+
+"""
+Décimo ejercicio. Escriba una función calcula(lista) que reciba una lista no nula de números y
+obtenga:
+a) Cuál es el número mayor.
+b) El promedio de todos los números.
+c) Cuántos números son ceros
+en una lista
+"""
+
+"""
+Version de cola y slicing
+"""
+
+def calcula(lista):
+    if isinstance(lista, list) and lista != []:
+        return calcula_aux(lista, 0, 0, 0, 0, 0)
+    else:
+        return "Error"
+    
+def calcula_aux(lista, indice, mayor, suma, cantidad, ceros):
+    if indice == len(lista):
+        return (mayor, suma / cantidad, ceros)
+    elif lista[indice] > mayor:
+        return calcula_aux(lista, indice + 1, lista[indice], suma + lista[indice], cantidad + 1, ceros)
+    elif lista[indice] == 0:
+        return calcula_aux(lista, indice + 1, mayor, suma, cantidad + 1, ceros + 1)
+    else:
+        return calcula_aux(lista, indice + 1, mayor, suma + lista[indice], cantidad + 1, ceros)
+    
+    
+# print(calcula([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+# print("------------------------------------------------")
+# print(calcula([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]))
