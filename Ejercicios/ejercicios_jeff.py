@@ -92,29 +92,51 @@ def revise_num_cola_aux(numero, ceros, otros):
 
 """
 Tercer ejercicio. Escriba una función llamada divida(num, dig) que devuelva 
-una tupla con la cantidad de dígitos mayores o iguales a dig y la cantidad de
-digitos menores a dig.
+una tupla con los dígitos mayores al número dado y los dígitos menores al número dado.
+No debe ser un contador, se debe formar un nuevo digito a partir de los dígitos 
+que cumplan la condicion
 """
 
 """
 Version de cola. Este ejercicio también solo se puede hacer de cola.
 """
 
-
 def divida(num, dig):
     if isinstance(num, int) and isinstance(dig, int):
-        return divida_aux(num, dig, 0, 0)
+        return divida_aux(num, dig, 0, 0, 0, 0)
     else:
         return "Error"
     
-def divida_aux(num, dig, mayores, menores):
+def divida_aux(num, dig, menores, mayores, exp_mayores, exp_menores):
     if num == 0:
-        return (mayores, menores)
-    elif num % 10 >= dig:
-        return divida_aux(num // 10, dig, mayores + 1, menores)
+        return (menores, mayores)
+    
+    elif num % 10 < dig:
+        return divida_aux(num // 10, dig, (num % 10)*(10**exp_menores) + menores, mayores, exp_mayores, exp_menores + 1)
     else:
-        return divida_aux(num // 10, dig, mayores, menores + 1)
+        return divida_aux(num // 10, dig, menores, (num % 10)*(10**exp_mayores) + mayores, exp_mayores + 1, exp_menores)
+
 
 # print(divida(1234567890, 5))
 # print("------------------------------------------------")
 # print(divida(1234567890, 5))
+
+
+"""
+Cuarto ejercicio. Escriba una función llamada parejas(num) que 
+reciba un numero y cuente la cantidad de parejas que hay en el número.
+"""
+
+def parejas(num):
+    if isinstance(num, int):
+        return parejas_aux(num, 0)
+    else:
+        return "Error"
+    
+def parejas_aux(num, parejas):
+    if num == 0:
+        return parejas
+    elif (num // 10 != 0) and num % 10 == (num // 10) % 10:
+        return parejas_aux(num // 10, parejas + 1)
+    else:
+        return parejas_aux(num // 10, parejas)
