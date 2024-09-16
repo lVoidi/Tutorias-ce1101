@@ -137,6 +137,62 @@ def parejas_aux(num, parejas):
     if num == 0:
         return parejas
     elif (num // 10 != 0) and num % 10 == (num // 10) % 10:
-        return parejas_aux(num // 10, parejas + 1)
+        return parejas_aux(num // 100, parejas + 1)
     else:
-        return parejas_aux(num // 10, parejas)
+        return parejas_aux(num // 100, parejas)
+
+# print(parejas(112233445566778899))
+# print("------------------------------------------------")
+# print(parejas(1234567890))
+
+
+"""
+Quinto ejercicio. Haga una función que se llama  forme1 que tome una lista
+y cree una nueva lista con todos los unos que hay en la lista original.
+"""
+
+"""
+Version de cola y slicing
+"""
+
+def forme1(lista):
+    if isinstance(lista, list):
+        return forme1_aux(lista, [])
+    else:
+        return "Error"
+
+def forme1_aux(lista, nueva_lista):
+    if lista == []:
+        return nueva_lista
+    elif lista[0] == 1:
+        return forme1_aux(lista[1:], nueva_lista + [1])
+    else:
+        return forme1_aux(lista[1:], nueva_lista)
+
+
+"""
+Version de pila con índices
+"""
+
+def forme1_pila(lista):
+    if isinstance(lista, list):
+        return forme1_pila_aux(lista, 0)
+    else:
+        return "Error"
+
+def forme1_pila_aux(lista, indice):
+    if indice == len(lista):
+        return []
+    elif lista[indice] == 1:
+        return [lista[indice]] + forme1_pila_aux(lista, indice + 1)
+    else:
+        return forme1_pila_aux(lista, indice + 1)
+
+# print(forme1([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+# print("------------------------------------------------")
+# print(forme1([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]))
+
+# print(forme1_pila([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+# print("------------------------------------------------")
+# print(forme1_pila([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]))
+
