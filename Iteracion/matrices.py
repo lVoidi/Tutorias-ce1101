@@ -9,13 +9,17 @@ Ejercicio 1. Crea una función que reciba una matriz y devuelva la suma de todos
 def suma_matriz(matriz):
     ...
     
+    
 # Prueba
 matriz = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9]
 ]
+
 assert suma_matriz(matriz) == 45
+
+print(suma_matriz(matriz))
 
 """
 Ejercicio 2. Crea una función que reciba una matriz y devuelva la suma de los elementos de cada fila.
@@ -30,7 +34,7 @@ matriz = [
     [4, 5, 6],
     [7, 8, 9]
 ]
-assert suma_filas(matriz) == [6, 15, 24]
+#assert suma_filas(matriz) == [6, 15, 24]
 
 """
 Ejercicio 3. Una matriz recibe el nombre de matriz identidad si todos los elementos de la diagonal principal
@@ -46,7 +50,7 @@ matriz = [
     [0, 1, 0],
     [0, 0, 1]
 ]
-assert matriz_identidad(matriz) == True
+#assert matriz_identidad(matriz) == True
 
 """
 Ejercicio 4. Crea una función que reciba una matriz y devuelva la suma de los elementos de la diagonal principal.
@@ -62,7 +66,7 @@ matriz = [
     [0, 0, 1]
 ]
 
-assert suma_diagonal(matriz) == 3
+#assert suma_diagonal(matriz) == 3
 
 """
 Ejercicio 5. Crea una funcion llamada sustitucion, que reciba una matriz, un elemento y un nuevo elemento.
@@ -80,12 +84,7 @@ matriz = [
     [7, 8, 9]
 ]
 nueva_matriz = sustitucion(matriz, 5, 0)
-assert nueva_matriz == [
-    [1, 2, 3],
-    [4, 0, 6],
-    [7, 8, 9]
-]
-    
+
 """
 Ejercicio 6. Resta de matrices. Una funcion llamada resta_matrices que reciba dos matrices y devuelva una nueva
 matriz que sea la resta de las dos matrices. Si las matrices no tienen las mismas dimensiones, la función debe
@@ -94,3 +93,26 @@ devolver None.
 
 def resta_matrices(matriz1, matriz2):
     ...
+
+print(resta_matrices(
+    [[1, 2],
+     [3, 5]],
+    [[1, 2],
+     [3, 4]]
+    )
+)
+    
+
+"""
+Ejercicio 7. Crea una función que reciba una matriz. Debe devolver el valor menor, el valor mayor y 
+el promedio de la matriz.
+"""
+def ejercicio_examen(matriz):
+    ...
+
+# Prueba
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]

@@ -108,6 +108,7 @@ def update_rect():
     # Detecta las colisiones con la bola utilizando bbox
     # Esto nos da las coordenadas del objeto en el canvas
     # como un rectángulo (x0, y0, x1, y1)
+
     ball_bbox = canvas.bbox(ball)
     rect_bbox = canvas.bbox(rect)
 
