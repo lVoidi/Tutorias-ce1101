@@ -22,12 +22,16 @@ Si la bola choca con el rectángulo,la bola será borrada del canvas.
 En el caso del super pang, la bola se divide
 pero en este caso, la bola simplemente desaparece.
 """
+from PIL import Image, ImageTk
 import tkinter as tk
 import time
 
 # Definimos constantes
 WIDTH, HEIGHT = 800, 600
 end = False
+puntaje = 0
+
+
 
 # Definimos variables globales
 ball_coords = [400, 500]
@@ -55,9 +59,19 @@ instructions = canvas.create_text(
     font=("Arial", 20)
 )
 
-ball = canvas.create_oval(
-    ball_coords[0], ball_coords[1], ball_coords[0] + size, ball_coords[1] + size,
-    fill="black"
+puntaje_text = canvas.create_text(
+    WIDTH // 4, HEIGHT // 2 + 50,
+    text=f"Puntaje: {puntaje}",
+    font=("Arial", 20)
+)
+
+img = Image.open("Ejemplos/ball.jpg").resize( (size, size) )
+img = ImageTk.PhotoImage(img)
+
+ball = canvas.create_image(
+    ball_coords[0], ball_coords[1],
+    anchor="nw",
+    image=img
 )
 
 rect = canvas.create_rectangle(
@@ -79,7 +93,7 @@ def update_ball():
     ball_coords[0] += dir[0]
     ball_coords[1] += dir[1]
 
-    canvas.coords(ball, ball_coords[0], ball_coords[1], ball_coords[0] + size, ball_coords[1] + size)
+    canvas.coords(ball, ball_coords[0], ball_coords[1])
     
 def update_rect():
     """
@@ -96,12 +110,16 @@ def update_rect():
     # como un rectángulo (x0, y0, x1, y1)
     ball_bbox = canvas.bbox(ball)
     rect_bbox = canvas.bbox(rect)
+
     if (ball_bbox[2] >= rect_bbox[0]
         and ball_bbox[0] <= rect_bbox[2] 
         and ball_bbox[3] >= rect_bbox[1] 
         and ball_bbox[1] <= rect_bbox[3]):
         canvas.delete(ball)
         
+        puntaje = 100
+        canvas.itemconfig(puntaje_text, text=f"Puntaje: {puntaje}")
+
         # Reinicia variables
         rect_height = 0
         shooting = False
@@ -111,7 +129,7 @@ def update_rect():
         rect_height += 1
 
     canvas.coords(rect, rect_coords[0], rect_coords[1], rect_coords[0] + rect_width, rect_coords[1] - rect_height)
-    
+
 
 def update():
     while True:
@@ -123,9 +141,8 @@ def update():
                 font=("Arial", 20)
             )
             window.after(2000, window.destroy)
-        
         update_ball()
-        
+
         if shooting:
             update_rect()
             
