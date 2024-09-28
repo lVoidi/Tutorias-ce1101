@@ -7,6 +7,28 @@ las bolas se mueven en direcciones opuestas. Por ultimo, si la barra choca
 con una bola de radio 25, estas se dividen en dos bolas de radio 12.5 y luego
 de esto, si esas bolas chocan con la barra, son eliminadas y ya no se dividen
 mas esferas.
+
+
+Para esto, guardamos toda la informacion necesaria de las bolas en una matriz
+
+bolas = [
+    [id1, coords1, dir1, size1],
+    [id2, coords2, dir2, size2],
+    ...
+]
+
+En la funcion update_balls, detectamos las colisiones con is_colission y si
+la bola choca con el proyectil, la eliminamos y creamos dos bolas nuevas de
+radio 25. Si la bola choca con una bola de radio 25, la eliminamos y creamos
+dos bolas nuevas de radio 12.5. Si la bola choca con la barra, la eliminamos. 
+
+Para detectar las colisiones, utilizamos la funcion bbox de canvas, que nos
+da las coordenadas de un objeto en el canvas. Si las coordenadas de la bola
+estan dentro de las coordenadas del rectangulo, entonces hay colision.
+
+Para disparar, presionamos la barra espaciadora. La barra se mueve hacia arriba
+y cuando llega a 400, vuelve a 0. Si la barra choca con una bola, la barra
+vuelve a 0.
 """
 
 import tkinter as tk
@@ -51,6 +73,7 @@ rect = canvas.create_rectangle(
     fill="black"
 )
 
+# Crea una bola de diametro 50
 bolas.append([canvas.create_oval(400, 100, 450, 150), [400, 100], [1, 1], 50])
 
 def update_rect():
@@ -63,11 +86,12 @@ def update_rect():
 
     canvas.coords(rect, rect_coords[0], rect_coords[1], rect_coords[0] + rect_width, rect_coords[1] - rect_height)
     
-    rect_height += 10
+    rect_height += 6
 
 def update_balls(b, result):
     global puntaje, shooting, bolas, end
 
+    # Si se terminan las bolas, termina la simulación
     if not bolas:
         end = True
         return
@@ -91,18 +115,20 @@ def update_balls(b, result):
         puntaje += size
         canvas.itemconfig(puntaje_text, text=f"Puntaje: {puntaje}")
 
+        # Crea dos bolas de diametro 25
         if size == 50:
             ball_left = canvas.create_oval(coords[0], coords[1], coords[0] + 25, coords[1]+25, fill="red")
             ball_right = canvas.create_oval(coords[0], coords[1], coords[0]+25, coords[1]+25, fill="blue")
             result.append([ball_right, coords, [1, 1], 25])
             result.append([ball_left, coords, [-1, 1], 25])
+        
+        # Crea dos bolas de diametro 12.5
         elif size == 25:
             ball_left = canvas.create_oval(coords[0], coords[1], coords[0] + 12.5, coords[1] + 12.5, fill="red")
             ball_right = canvas.create_oval(coords[0], coords[1], coords[0] + 12.5, coords[1] + 12.5, fill="blue")
             result.append([ball_right, coords, [1, 1], 12.5])
             result.append([ball_left, coords, [-1, 1], 12.5])
             
-        print(result)
         return result + b[1:]
     
     id, coords, dir, size = b[0]
@@ -123,6 +149,10 @@ def update_balls(b, result):
     return update_balls(b[1:], result)
     
 def is_collision(b):
+    """
+    Detecta las colisiones del rectángulo las bolas. 
+    b es una lista de bolas en el canvas.
+    """
     if not b:
         return False
     
