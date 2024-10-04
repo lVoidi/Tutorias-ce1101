@@ -35,7 +35,6 @@ class Jugador:
         self.nombre = nombre 
         self.velocidad = velocidad
         self.coordenadas = coordenadas
-    
 
     def mover(self):
         self.coordenadas = (
@@ -43,12 +42,10 @@ class Jugador:
             self.coordenadas[1] + self.velocidad[1]
         )
     
-
     def quitar_vida(self):
         self.vidas -= 1 
         if self.vidas == 0:
             print(f"Se ha muerto {self.nombre}")
-    
 
     def nueva_velocidad(self, velocidad: tuple):
         self.velocidad = velocidad
@@ -89,13 +86,12 @@ class Carro:
     def __init__(self, marca):
         self.marca = marca
 
-
     def mostrar_marca():
         print(self.marca)
 
 ```
 
-Como podemos ver, las palabras siempre están en minúscula y separadas por barra baja. A su vez, debe haber una separación de dos lineas entre cada 
+Como podemos ver, las palabras siempre están en minúscula y separadas por barra baja. A su vez, debe haber una separación de una linea entre cada 
 función, para que el código sea más legible. En el caso de las instancias, también se debe usar snake case 
 ```py
 toyota = Carro("toyota")
@@ -186,24 +182,20 @@ class Jugador:
         self.nombre = nombre 
         self.velocidad = velocidad
         self.coordenadas = coordenadas
-    
 
     def mover(self):
         self.coordenadas = (
             self.coordenadas[0] + self.velocidad[0],
             self.coordenadas[1] + self.velocidad[1]
         )
-    
 
     def quitar_vida(self):
         self.vidas -= 1 
         if self.vidas == 0:
             print(f"Se ha muerto {self.nombre}")
     
-
     def nueva_velocidad(self, velocidad: tuple):
         self.velocidad = velocidad
-
 
 
 class Enemigo: 
@@ -213,27 +205,22 @@ class Enemigo:
         self.tipo = tipo
         self.coordenadas = coordenadas
     
-
     def mover(self):
         self.coordenadas = (
             self.coordenadas[0] + self.velocidad[0],
             self.coordenadas[1] + self.velocidad[1]
         )
-    
 
     def quitar_vida(self):
         self.vidas -= 1 
         if self.vidas == 0:
             print(f"Se ha muerto {self.nombre}")
-    
 
     def nueva_velocidad(self, velocidad: tuple):
         self.velocidad = velocidad
 
-
     def mostrar_tipo(self):
         print(f"¡Es un enemigo de tipo {self.tipo}!")
-
 
 
 class Mapa:
@@ -242,7 +229,6 @@ class Mapa:
         self.enemigos = []
         self.jugadores = []
     
-
     def mover_entidades(self):
         for enemigo in self.enemigos:
             enemigo.mover()
@@ -262,19 +248,16 @@ class Entidad:
         self.velocidad = velocidad
         self.coordenadas = coordenadas
     
-
     def mover(self):
         self.coordenadas = (
             self.coordenadas[0] + self.velocidad[0],
             self.coordenadas[1] + self.velocidad[1]
         )
-    
 
     def quitar_vida(self):
         self.vidas -= 1 
         if self.vidas == 0:
             print(f"Se ha muerto {self.nombre}")
-    
 
     def nueva_velocidad(self, velocidad: tuple):
         self.velocidad = velocidad
@@ -296,7 +279,6 @@ class Jugador(Entidad):
         super().__init__(vidas, velocidad, coordenadas)
         self.nombre = nombre 
 
-
 class Enemigo(Entidad):
     def __init__(self, vidas: int, velocidad: tuple, coordenadas: tuple, tipo: str):
         super().__init__(vidas, velocidad, coordenadas)
@@ -309,7 +291,6 @@ class Mapa:
         self.dimensiones = dimensiones 
         self.entidades = []
     
-
     def mover_entidades(self):
         for entidad in self.entidades:
             entidad.mover()
@@ -337,7 +318,6 @@ class Jugador(Entidad):
         super().__init__(vidas, velocidad, coordenadas)
         self.nombre = nombre 
     
-
     def mostrar_informacion(self):
         super().mostrar_informacion()
         print(f"""
@@ -351,13 +331,12 @@ class Enemigo(Entidad):
         super().__init__(vidas, velocidad, coordenadas)
         self.tipo = tipo 
 
-
     def mostrar_informacion(self):
         super().mostrar_informacion()
         print(f"""
 ---- Información específica ----  
 Tipo -> {self.tipo}
-""")
+        """)
 ```
 # Conclusiones 
 La programación orientada a objetos es muy útil para ver escenarios de la vida real o incluso objetos abstractos, como pueden ser listas enlazadas o 
