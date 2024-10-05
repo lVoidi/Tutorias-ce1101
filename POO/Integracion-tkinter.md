@@ -36,7 +36,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-> Nota: ¿Alguna vez has visto esa nomenclatura? Me refiero al hecho de crear una clase main y ese if \_\_name\_\_ == "\_\_main\_\_". Esta es una buena práctica de programación cuando queremos hacer un código con muchos módulos. Cuando nosotros hacemos un import en python, este corre todo el código que tenga el módulo. Esto significa inicializar variables, funciones, hasta hacer un print en el módulo. ¿Alguna vez te ha dado error en la línea 5000 en tu código de 200 lineas? Es por eso. Este condicional if hace que ese código, dentro de la función main, corra sólo cuando llamamos a ese archivo directamente, no cuando lo importe. En palabras simples, si yo quiero importar Ventana desde otro archivo de python, no se me va a crear una instancia de la misma directamente. Es una buena práctica y se ve bonito, aprovéchalo.
+> Nota: ¿Alguna vez has visto esa nomenclatura? Me refiero al hecho de crear un método main y ese if \_\_name\_\_ == "\_\_main\_\_". Esta es una buena práctica de programación cuando queremos hacer un código con muchos módulos. Cuando nosotros hacemos un import en python, este corre todo el código que tenga el módulo. Esto significa inicializar variables, funciones, hasta hacer un print en el módulo. ¿Alguna vez te ha dado error en la línea 5000 en tu código de 200 lineas? Es por eso. Este condicional if hace que ese código, dentro de la función main, corra sólo cuando llamamos a ese archivo directamente, no cuando lo importe. En palabras simples, si yo quiero importar Ventana desde otro archivo de python, no se me va a crear una instancia de la misma directamente. Es una buena práctica y se ve bonito, aprovéchalo.
 
 ![Heredando Tk](./assets/new_root.png)
 
@@ -138,7 +138,8 @@ class Ventana(tk.Tk):
     def undo_something(self):
         self.title["text"] = "Este es un título para nuestro hermoso programa"
 ```
-> Nota: En la función de do_something, apareció una nueva función misteriosa... after. Esta función nos permite ejecutar otra función luego de la cantidad de milisegundos que especifiquemos. Esta función es especialmente buena porque, de otro modo, tendríamos que utilizar hilos para llamar una función luego de cierto tiempo. En cambio, tkinter hace ese procedimiento por nosotros en esa función, ya que el mismo funciona con hilos. De hecho, la misma función mainloop es un hilo. 
+> Nota 1: En la función de do_something, apareció una nueva función misteriosa... after. Esta función nos permite ejecutar otra función luego de la cantidad de milisegundos que especifiquemos. Esta función es especialmente buena porque, de otro modo, tendríamos que utilizar hilos para llamar una función luego de cierto tiempo. En cambio, tkinter hace ese procedimiento por nosotros en esa función, ya que el mismo funciona con hilos. De hecho, la misma función mainloop es un hilo. 
+> Nota 2: Cuidado con las identaciones. Recuerden que python define los límites de cada función y clase deacuerdo a eso, así que si meten una función dentro de un método, por más que le pongan self, no lo podran acceder o van a tener comportamientos desafortunados
 
 ![Boton  que hace algo](./assets/boton.png)
 
