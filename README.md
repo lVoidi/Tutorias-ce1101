@@ -1,7 +1,7 @@
 # Tutorias de Introducción a la Programación (CE1101)
 <div align="center">
     <img src="https://i.pinimg.com/564x/74/48/45/74484584aff22c6c56eb64a80694a69a.jpg">
-</center>
+</div>
 
 
 En este repositorio, guardo todas mis clases, ejercicios y recursos disponibles. La idea de hacer este repositorio 
