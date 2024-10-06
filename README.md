@@ -1,4 +1,9 @@
 # Tutorias de Introducción a la Programación (CE1101)
+<div align="center">
+    <img src="https://i.pinimg.com/564x/74/48/45/74484584aff22c6c56eb64a80694a69a.jpg">
+</center>
+
+
 En este repositorio, guardo todas mis clases, ejercicios y recursos disponibles. La idea de hacer este repositorio 
 Open Source es para que las personas estudiantes del curso de Introducción a la Programacion tengan una mayor 
 facilidad para accederlos.
@@ -30,6 +35,10 @@ El curso aborda los siguientes temas, en orden:
 6. Proyecto de POO
 
 # Recursos 
+![Cheatsheet de linux](https://i.pinimg.com/564x/d7/8d/e2/d78de2c3f1de02b0e62b8d4de7331f95.jpg)
+![Cheatsheet de git](https://i.pinimg.com/originals/70/46/fe/7046fed5bc625439bcf6a6c408724e60.jpg)
+![Github vs git](https://i.pinimg.com/originals/ae/5b/2a/ae5b2ae1554cf3946626ec1038e2f886.jpg)
+
 ## Cheatsheet de comandos útiles 
 Hago esta sección para mostrar una lista de comandos de terminal que son increíblemente útiles para la vida diaria. Acostúmbrense a la terminal, no le tengan miedo. Si pueden, acostúmbrense a usar una terminal Unix-based como Git Bash (la cual utiliza bash), la de Mac o una de Linux. 
 ### Cambiar de directorio 
