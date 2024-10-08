@@ -2,21 +2,21 @@
 El objetivo de este Ejercicio es reforzar la programacion orientada a objetos y las matrices. El objetivo es crear un objeto llamado Matriz que pueda hacer las siguientes operaciones. Todas estas operaciones vienen explicadas en el archivo [Ejercicio-Matriz.py](https://github.com/lVoidi/Tutorias-ce1101/blob/main/POO/Ejercicio-Matriz.py).
 1. Suma 
 2. Resta
-Y que se puedan hacer estos calculos 
+### Y que se puedan hacer estos calculos 
 1. Total
 2. Promedio
 3. Mayor 
 4. Menor 
 5. Llenar
 6. Transpuesta
-Algunos extra que puede intentar hacer son los siguientes:
+### Algunos extra que puede intentar hacer son los siguientes:
 1. Reflexion vertical 
 2. Reflexion horizontal 
 3. Voltear matriz a la izquierda 
 4. Voltear matriz a la derecha  
 5. Acotar
 
-La matriz debe tener las siguientes propiedades, las cuales pueden ser cambiadas dependiendo de la operacion que se le haga. 
+### La matriz debe tener las siguientes propiedades, las cuales pueden ser cambiadas dependiendo de la operacion que se le haga. 
 1. Matriz 
 2. Dimension
 3. Historial de operaciones 
