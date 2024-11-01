@@ -1,3 +1,6 @@
 [submodule "java"]
 	path = java
 	url = https://github.com/lVoidi/introduccion-java.git
+[submodule "Data-Structures-using-Python"]
+	path = Data-Structures-using-Python
+	url = https://github.com/OmkarPathak/Data-Structures-using-Python.git
