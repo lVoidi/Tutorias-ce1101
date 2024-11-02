@@ -52,7 +52,20 @@ Matriz triangular inferior: Es una matriz cuadrada en la que todos los elementos
 # [3 4]
 # https://www.w3schools.com/python/ref_func_print.asp
 def print_matrix(matrix: list) -> None:
-    ...
+    
+    result = ""
+    for i in range(len(matrix)):
+        result += "["
+        for j in range(len(matrix[i])):
+            if j == len(matrix[i]) - 1:
+                result += f"{matrix[i][j]}"
+            else:
+                result += f"{matrix[i][j]} "
+        result += "]\n"
+    print(result)
+
+# Casos de prueba:
+print_matrix([[1, 2], [3, 4]])
     
 # Nota 1: Pueden usar la función print_matrix para probar los ejercicios que siguen.
 # Nota 2: En python pueden utilizar las type annotations. Esto lo que nos permite es definir el tipo de dato
