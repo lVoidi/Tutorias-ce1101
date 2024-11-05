@@ -50,6 +50,16 @@ class ListaEnlazada:
             print(actual.dato, end=" -> ")
             actual = actual.siguiente
         print("None")
+        
+    def __str__(self) -> str:
+        result = ""
+        actual = self.cabeza
+        while actual:
+            result += str(actual.dato) + " -> "
+            actual = actual.siguiente
+        result += "None"
+        return result
+
 
 # ------------------- Ejercicios básicos (*) -------------------
 """
@@ -83,7 +93,6 @@ Resultado: 3 -> 2 -> 1 -> None
 
 def invertir_lista(lista: ListaEnlazada) -> ListaEnlazada:
     ...
-
 """
 Ejercicio 4: Eliminar duplicados
 Implemente una función que elimine los elementos duplicados de una lista enlazada.
