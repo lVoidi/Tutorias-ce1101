@@ -52,7 +52,8 @@ Matriz triangular inferior: Es una matriz cuadrada en la que todos los elementos
 # [3 4]
 # https://www.w3schools.com/python/ref_func_print.asp
 def print_matrix(matrix: list) -> None:
-    ...
+    for i in range(len(matrix)):
+        print(matrix[i])
     
 # Nota 1: Pueden usar la función print_matrix para probar los ejercicios que siguen.
 # Nota 2: En python pueden utilizar las type annotations. Esto lo que nos permite es definir el tipo de dato
@@ -70,7 +71,14 @@ def print_matrix(matrix: list) -> None:
 # [[0, 0, 0],
 #  [0, 0, 0]]
 def zeros_matrix(rows: int, cols: int) -> list:
-    ...
+    result = []
+    for i in range(rows):
+        row = []
+        for j in range(cols):
+            row.append(0)
+        result.append(row)
+    
+    return result
     
 # Casos de prueba:
 # zeros_matrix(2, 3) debe devolver [[0, 0, 0], [0, 0, 0]]
@@ -88,7 +96,17 @@ def zeros_matrix(rows: int, cols: int) -> list:
 #  [0, 0, 1]]
 
 def identity_matrix(n: int) -> list:
-    ...
+    result = []
+    for i in range(n):
+        row = []
+        for j in range(n):
+            if i == j:
+                row.append(1)
+            else:
+                row.append(0)
+        result.append(row)
+    
+    return result
     
 # Casos de prueba:
 # identity_matrix(2) debe devolver [[1, 0], [0, 1]]
@@ -104,7 +122,14 @@ def identity_matrix(n: int) -> list:
 # [[6, 8], [10, 12]]
 
 def sum_matrices(matrix_a: list, matrix_b: list) -> list:
-    ...
+    result = []
+    for i in range(len(matrix_a)):
+        row = []
+        for j in range(len(matrix_a[i])):
+            row.append(matrix_a[i][j] + matrix_b[i][j])
+        result.append(row)
+    
+    return result
     
 # Casos de prueba:
 # sum_matrices([[1, 2], [3, 4]], [[5, 6], [7, 8]]) debe devolver [[6, 8], [10, 12]]
@@ -122,7 +147,14 @@ def sum_matrices(matrix_a: list, matrix_b: list) -> list:
 # [[1, 3, 5], [2, 4, 6]]
 
 def transpose_matrix(matrix: list) -> list:
-    ...
+    result = []
+    for i in range(len(matrix[0])):
+        row = []
+        for j in range(len(matrix)):
+            row.append(matrix[j][i])
+        result.append(row)
+    
+    return result
     
 # Casos de prueba:
 # transpose_matrix([[1, 2], [3, 4], [5, 6]]) debe devolver [[1, 3, 5], [2, 4, 6]]
@@ -137,7 +169,14 @@ def transpose_matrix(matrix: list) -> list:
 # [[2, 4], [6, 8]]
 
 def multiply_matrix_by_scalar(matrix: list, scalar: int) -> list:
-    ...
+    result = []
+    for i in range(len(matrix)):
+        row = []
+        for j in range(len(matrix[i])):
+            row.append(matrix[i][j] * scalar)
+        result.append(row)
+    
+    return result
     
 # Casos de prueba:
 # multiply_matrix_by_scalar([[1, 2], [3, 4]], 2) debe devolver [[2, 4], [6, 8]]
@@ -152,7 +191,11 @@ def multiply_matrix_by_scalar(matrix: list, scalar: int) -> list:
 # Si la matriz es [[1, 2], [3, 4], [5, 6]], la función debe devolver False
 
 def lt_five(matrix: list) -> bool:
-    ...
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            if matrix[i][j] >= 5:
+                return False
+    return True
 
 # Casos de prueba:
 # lt_five([[1, 2], [3, 4]]) debe devolver True
@@ -165,7 +208,10 @@ def lt_five(matrix: list) -> bool:
 # Si la matriz es [[1, 2], [3, 4]], la función debe devolver 5
 
 def sum_diagonal(matrix: list) -> int:
-    ...
+    result = 0
+    for i in range(len(matrix)):
+        result += matrix[i][i]
+    return result
 
 # Casos de prueba:
 # sum_diagonal([[1, 2], [3, 4]]) debe devolver 5
@@ -179,7 +225,11 @@ def sum_diagonal(matrix: list) -> int:
 # son 0.
 
 def sup_triangular_matrix(matrix: list) -> bool:
-    ...
+    for i in range(len(matrix)):
+        for j in range(i): # Solo recorremos los elementos por debajo de la diagonal principal
+            if matrix[i][j] != 0:
+                return False
+    return True
     
 # Casos de prueba:
 # sup_triangular_matrix([[1, 2], [0, 4]]) debe devolver True
@@ -194,7 +244,17 @@ def sup_triangular_matrix(matrix: list) -> bool:
 # Si la matriz es [[1, 0], [0, 1]], la función debe devolver [[0, 1], [1, 0]]
 
 def swap_zeros_ones(matrix: list) -> list:
-    ...
+    result = []
+    for i in range(len(matrix)):
+        row = []
+        for j in range(len(matrix[i])):
+            if matrix[i][j] == 0:
+                row.append(1)
+            else:
+                row.append(0)
+        result.append(row)
+    
+    return result
     
 # Casos de prueba:
 # swap_zeros_ones([[1, 0], [0, 1]]) debe devolver [[0, 1], [1, 0]]
@@ -246,7 +306,14 @@ Recuerda comprobar que la cantidad de columnas de la matriz A sea igual a la can
 
 def multiply_matrices(matrix_a: list, matrix_b: list) -> list:
     resultado = [[0 for _ in range(len(matrix_b[0]))] for _ in range(len(matrix_a))]
-    ...
+    
+    for i in range(len(matrix_a)):
+        for j in range(len(matrix_b[0])):
+            for k in range(len(matrix_b)):
+                resultado[i][j] += matrix_a[i][k] * matrix_b[k][j]
+    
+    return resultado
+
 
 # Casos de prueba:
 # multiply_matrices([[1, 2], [3, 4]], [[5, 6], [7, 8]]) debe devolver [[19, 22], [43, 50]]

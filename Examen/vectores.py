@@ -25,7 +25,10 @@ TODO Instrucciones:
 # v2 = [4, 5, 6]
 # suma_vectores(v1, v2) => [5, 7, 9]
 def suma_vectores(v1: list, v2: list) -> list:
-    ...
+    result = []
+    for i in range(len(v1)):
+        result.append(v1[i] + v2[i])
+    return result
     
 # Casos de prueba
 # v1 = [1, 2, 3]
@@ -40,7 +43,10 @@ def suma_vectores(v1: list, v2: list) -> list:
 # producto_punto(v1, v2) => 32
 
 def producto_punto(v1: list, v2: list) -> list:
-    ...
+    result = 0
+    for i in range(len(v1)):
+        result += v1[i] * v2[i]
+    return result
     
 
 # Casos de prueba
@@ -56,7 +62,10 @@ def producto_punto(v1: list, v2: list) -> list:
 # producto_vector_escalar(v, escalar) => [2, 4, 6]
 
 def producto_vector_escalar(v: list, escalar: int) -> list:
-    ...
+    result = []
+    for i in range(len(v)):
+        result.append(v[i] * escalar)
+    return result
     
 # Casos de prueba
 # v = [1, 2, 3]
@@ -72,7 +81,10 @@ def producto_vector_escalar(v: list, escalar: int) -> list:
 # magnitud_vector(v) => 3.74 = sqrt(1^2 + 2^2 + 3^2)
 
 def magnitud_vector(v: list) -> float:
-    ...
+    result = 0
+    for i in range(len(v)):
+        result += v[i] ** 2
+    return result ** 0.5
 
 # Casos de prueba
 # v = [1, 2, 3]
@@ -81,7 +93,13 @@ def magnitud_vector(v: list) -> float:
 # TODO Ejercicio 5: Para cada numero en posicion par, multiplicar por 2 y para cada numero en posicion impar multiplicar por 3
 
 def multiplicar_posicion(v: list) -> list:
-    ...
+    result = []
+    for i in range(len(v)):
+        if i % 2 == 0:
+            result.append(v[i] * 2)
+        else:
+            result.append(v[i] * 3)
+    return result
     
 # Casos de prueba
 # v = [1, 2, 3, 4, 5]
@@ -89,7 +107,11 @@ def multiplicar_posicion(v: list) -> list:
 
 # TODO Ejercicio 6. A partir de un vector de números enteros, devolver un vector con solo los números pares.
 def numeros_pares(v: list) -> list:
-    ...
+    result = []
+    for i in v:
+        if i % 2 == 0:
+            result.append(i)
+    return result
 
 # Casos de prueba
 # v = [1, 2, 3, 4, 5]
@@ -100,7 +122,22 @@ def numeros_pares(v: list) -> list:
 # 2. Menor número
 # 3. Mayor número
 def estadisticas(v: list) -> list:
-    ...
+    
+    suma = 0 
+    for i in v:
+        suma += i
+    
+    media = suma / len(v)
+    menor = v[0]
+    mayor = v[0]
+    
+    for i in v:
+        if i < menor:
+            menor = i
+        if i > mayor:
+            mayor = i
+            
+    return [media, menor, mayor]
     
 # Casos de prueba
 # v = [1, 2, 3, 4, 5]
@@ -111,21 +148,28 @@ def estadisticas(v: list) -> list:
 # TODO Ejercicio 8: Haga las siguientes funciones: 
 # 1. Menor elemento
 # 2. Mayor elemento
-# 3. Una función llamada swap, que recibe dos valores, a y b, y va a reemplazar los valores de a con los valores de b y viceversa.
-# 4. Una función llamada swap_max_min, que va a intercambiar el menor valor del vector con el mayor valor del vector.
+# 3. Una función llamada swap_max_min, que va a intercambiar el menor valor del vector con el mayor valor del vector.
 
 def menor_elemento(v: list) -> int:
-    ...
-    
-def mayor_elemento(v: list) -> int:
-    ...
+    menor = v[0]
+    for i in v:
+        if i < menor:
+            menor = i
+    return menor
 
-def swap(a: int, b: int) -> list:
-    ...
-    
+def mayor_elemento(v: list) -> int:
+    mayor = v[0]
+    for i in v:
+        if i > mayor:
+            mayor = i
+    return mayor
+
 def swap_max_min(v: list) -> list:
-    ...
-    
+    result = v.copy() # hay que hacer una copia para no modificar el vector original
+    min_idx = v.index(menor_elemento(v))
+    max_idx = v.index(mayor_elemento(v))
+    result[min_idx], result[max_idx] = result[max_idx], result[min_idx]
+    return result
 
 # Casos de prueba
 # v = [1, 2, 3, 4, 5]
@@ -139,10 +183,13 @@ def swap_max_min(v: list) -> list:
 # 1. Invertir un vector
 # 2. Verificar si un vector es simétrico
 def invertir_vector(v: list) -> list:
-    ...
+    result = []
+    for i in range(len(v) - 1, -1, -1):
+        result.append(v[i])
+    return result
 
 def simetrico(v: list) -> bool:
-    ...
+    return v == invertir_vector(v)
     
 # Casos de prueba
 # v = [1, 2, 3, 2, 1]
@@ -154,7 +201,7 @@ def simetrico(v: list) -> bool:
 # TODO Ejercicio 10: Hacer una función que reciba dos vectores y devuelva True si son ortogonales y False si no lo son.
 # Dos vectores son ortogonales si su producto punto es igual a 0.
 def ortogonales(v1: list, v2: list) -> bool:
-    ...
+    return producto_punto(v1, v2) == 0
     
 # Casos de prueba
 # v1 = [1, 0]
@@ -169,7 +216,12 @@ def ortogonales(v1: list, v2: list) -> bool:
 # paralelos(v1, v2) => True
 
 def paralelos(v1: list, v2: list) -> bool:
-    ...
+    for i in range(len(v1)):
+        if v1[i] == 0 or v2[i] == 0:
+            continue
+        if v1[i] / v2[i] != v1[0] / v2[0]:
+            return False
+    return True
 
 # Casos de prueba
 # v1 = [1, 2, 3]
@@ -179,10 +231,18 @@ def paralelos(v1: list, v2: list) -> bool:
 
 # TODO Ejercicio 12: Haga una función que compruebe que todos los elementos de un vector son primos.
 def es_primo(n: int) -> bool:
-    ...
+    if n < 2:
+        return False
+    for i in range(2, n):
+        if n % i == 0:
+            return False
+    return True
     
 def primos(v: list) -> bool:
-    ...
+    for i in v:
+        if not es_primo(i):
+            return False
+    return True
     
 # Casos de prueba
 # v = [2, 3, 5, 7, 11]
