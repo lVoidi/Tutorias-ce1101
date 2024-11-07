@@ -4,3 +4,6 @@
 [submodule "Data-Structures-using-Python"]
 	path = Data-Structures-using-Python
 	url = https://github.com/OmkarPathak/Data-Structures-using-Python.git
+[submodule "DesignPatterns"]
+	path = DesignPatterns
+	url = https://github.com/lVoidi/DesignPatterns.git
