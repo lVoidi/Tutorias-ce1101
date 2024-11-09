@@ -6,7 +6,7 @@
 
 En este repositorio, guardo todas mis clases, ejercicios y recursos disponibles. La idea de hacer este repositorio 
 Open Source es para que las personas estudiantes del curso de Introducción a la Programacion tengan una mayor 
-facilidad para accederlos.
+facilidad para accederlos, así como personas de años posteriores. 
 
 # Contenidos
 El curso aborda los siguientes temas, en orden:
